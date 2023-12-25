@@ -23,7 +23,3 @@ Created by ReNubProgrammer 👨🏻‍💻
 * Astro js
 * Svelte
 * Vercel SSR
-
-## 🛰️ Backend Side
-* Nest js
-* Mongo DB Atlas
