@@ -22,4 +22,3 @@ Created by ReNubProgrammer 👨🏻‍💻
 ## 🚀 Frontend Side
 * Astro js
 * Svelte
-* Vercel SSR
