@@ -16,9 +16,14 @@ Created by ReNubProgrammer 👨🏻‍💻
 
 ## 💻 Version Update and Details
 #### 0.1.0
-> * Installing Astrojs and the integration client side
-> * Setup for server side
+  * Installing Reactjs and the integration client side
 
-## 🚀 Frontend Side
-* Astro js
-* Svelte
+#### 0.2.0
+  * **Major Update**
+    * Add Shadcn for React UI Library
+    * Simplify UI and UX
+    * Integrating with Service API
+    * Add Order Management (Create, List) 
+    * Add Product Management (Create, List)
+    * Real Date and Time view
+
