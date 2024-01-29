@@ -4,8 +4,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
+import {
+  Dialog,
+  DialogTrigger,
+} from "./ui/dialog";
 import { Link } from "react-router-dom";
 import { useToast } from "./ui/use-toast";
+import AddProduct from "./layer/addProduct";
 
 function Sidebar() {
   const { toast } = useToast();
@@ -30,8 +35,8 @@ function Sidebar() {
               </Link>
             </AccordionContent>
             <AccordionContent className="pl-2 text-[18px]">
-            <Link to={`/agenda`}>
-              <button type="button">Agenda</button>
+              <Link to={`/agenda`}>
+                <button type="button">Agenda</button>
               </Link>
             </AccordionContent>
           </AccordionItem>
@@ -53,7 +58,10 @@ function Sidebar() {
               Product
             </AccordionTrigger>
             <AccordionContent className="pl-2 text-[18px]">
-              <button type="button">Add Product</button>
+              <Dialog>
+                <DialogTrigger>Add Product</DialogTrigger>
+                {AddProduct()}
+              </Dialog>
             </AccordionContent>
             <AccordionContent className="pl-2 text-[18px]">
               <Link to={`/product`}>

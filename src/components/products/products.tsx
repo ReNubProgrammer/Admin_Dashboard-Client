@@ -16,6 +16,7 @@ export default function ProductTable() {
   } catch (error) {
     return error;
   }
+
   return (
     <div className="container">
       <DataTable columns={columns} data={products} />
