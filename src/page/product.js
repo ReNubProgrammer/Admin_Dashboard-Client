@@ -1,6 +1,7 @@
 import Sidebar from "../components/sidebar";
 import Time from "../components/time";
-import { ProductTable } from "../components/products/table.product";
+import ProductTable from "../components/products/products"
+import { DataTableDemo } from "../components/products/tes";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 
 function Product() {

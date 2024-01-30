@@ -1,7 +1,7 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Orders = {
+type Orders = {
   id: string;
   date: number;
   customer_name: string;
@@ -15,7 +15,7 @@ export type Orders = {
   status: "pending" | "processing" | "success" | "cancelled";
 };
 
-export const columns: ColumnDef<Orders>[] = [
+export const column: ColumnDef<Orders>[] = [
   {
     accessorKey: "date",
     header: "Date",

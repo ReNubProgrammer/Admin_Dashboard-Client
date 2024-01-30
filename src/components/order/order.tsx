@@ -1,7 +1,7 @@
 import httpOrder from "../../lib/apiOrder";
 import { useEffect, useState } from "react";
-import { columns } from "./columns";
-import { DataTable } from "../ui/data-table";
+import { column } from "./columns";
+import { GenerateTable } from "../ui/data-table";
 
 export default function OrderTable() {
   const [orders, setOrders] = useState([]);
@@ -18,7 +18,7 @@ export default function OrderTable() {
   }
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={orders} />
+      <GenerateTable columns={column} data={orders} />
     </div>
   );
 }

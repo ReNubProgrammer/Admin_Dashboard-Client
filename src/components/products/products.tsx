@@ -1,7 +1,8 @@
 import httpProduct from "../../lib/apiProduct";
 import { useEffect, useState } from "react";
-import { columns } from "./columns";
-import { DataTable } from "../ui/data-table";
+import { column } from "./product-columns";
+import { GenerateTable } from "../ui/data-table";
+
 
 export default function ProductTable() {
   const [products, setProducts] = useState([]);
@@ -16,10 +17,9 @@ export default function ProductTable() {
   } catch (error) {
     return error;
   }
-
   return (
     <div className="container">
-      <DataTable columns={columns} data={products} />
+      <GenerateTable columns={column} data={products} />
     </div>
   );
 }

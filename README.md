@@ -27,3 +27,5 @@ Created by ReNubProgrammer 👨🏻‍💻
     * Add Product Management (Create, List)
     * Real Date and Time view
 
+#### 0.2.5
+  * Add Feature Table for Product and details

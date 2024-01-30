@@ -5,7 +5,7 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 
-import ProductForm from '../products/form-builder'
+import ProductForm from '../products/product-form-builder'
 
 function AddProduct() {
   return (
