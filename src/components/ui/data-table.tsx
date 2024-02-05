@@ -58,7 +58,7 @@ export function GenerateTable({columns, data}) {
     <div className="w-[100%]">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter product by name..."
+          placeholder="Filter list by name..."
           value={
             (table.getColumn("productName")?.getFilterValue() as string) ?? ""
           }
@@ -70,7 +70,7 @@ export function GenerateTable({columns, data}) {
       </div>
       <div className="rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader className="text-[15px] font-extrabold">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {

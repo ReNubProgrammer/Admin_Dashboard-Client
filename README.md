@@ -16,16 +16,21 @@ Created by ReNubProgrammer 👨🏻‍💻
 
 ## 💻 Version Update and Details
 #### 0.1.0
-  * Installing Reactjs and the integration client side
+  * Integration client side
+  * Plain Design
 
 #### 0.2.0
   * **Major Update**
     * Add Shadcn for React UI Library
     * Simplify UI and UX
-    * Integrating with Service API
+    * Integrating with Database and Service
     * Add Order Management (Create, List) 
     * Add Product Management (Create, List)
     * Real Date and Time view
 
 #### 0.2.5
   * Add Feature Table for Product and details
+
+#### 0.2.6
+  * Add Feature Table for Team and Order with details
+  * Add Member Management (Create, List)

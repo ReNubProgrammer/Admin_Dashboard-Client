@@ -46,7 +46,11 @@ export default function OrderForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      productName: "",
+      date: "",
+      customer_name: "",
+      product: "",
+      book_time: "",
+      status: "",
     },
   });
 
@@ -75,7 +79,7 @@ export default function OrderForm() {
       <form onSubmit={form.handleSubmit(OnSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="productName"
+          name="customer_name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Product Name</FormLabel>
@@ -93,25 +97,12 @@ export default function OrderForm() {
             <section className="flex items-end" key={field.id}>
               <FormField
                 control={form.control}
-                name={`packages.${index}.name`}
+                name={`fgInitial.${index}.initials`}
                 render={({ field }) => (
                   <FormItem className="pr-4">
                     <FormLabel>Package Name</FormLabel>
                     <FormControl>
                       <Input {...field} />
-                    </FormControl>
-                    <FormMessage></FormMessage>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name={`packages.${index}.price`}
-                render={({ field }) => (
-                  <FormItem className="pr-4">
-                    <FormLabel>Price</FormLabel>
-                    <FormControl>
-                      <Input type="number" {...field} />
                     </FormControl>
                     <FormMessage></FormMessage>
                   </FormItem>
@@ -129,8 +120,7 @@ export default function OrderForm() {
           variant="outline"
           onClick={() => {
             append({
-              name: "",
-              price: "",
+              initials: "",
             });
           }}
         >

@@ -18,8 +18,10 @@ import { Button } from "../ui/button";
 import httpProduct from "../../lib/apiProduct";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { DialogClose } from "../ui/dialog";
+import { Dialog, DialogClose, DialogTrigger } from "../ui/dialog";
 import { TrashIcon } from "@radix-ui/react-icons";
+import DeletePackage from "./deletePackage";
+import { useState } from "react";
 
 const packageSchema = z.object({
   name: z.string(),
@@ -34,8 +36,12 @@ const formSchema = z.object({
   packages: z.array(packageSchema),
 });
 
-export default function ProductForm() {
+export default function EditProductForm({ id, packages, prodName }) {
   const { toast } = useToast();
+  const [value, setValue] = useState();
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -61,8 +67,9 @@ export default function ProductForm() {
   const navigate = useNavigate();
 
   async function OnSubmit(values: z.infer<typeof formSchema>) {
+    console.log(id)
     await httpProduct
-      .post("/new", { data: values })
+      .patch(`/update/${id}`, { data: values })
       .then((response) => {
         let timerInterval;
         Swal.fire({
@@ -97,18 +104,57 @@ export default function ProductForm() {
       <form onSubmit={form.handleSubmit(OnSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="productName"
+          name={prodName}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Product Name</FormLabel>
               <FormControl>
-                <Input placeholder="Nganu" {...field} />
+                <Input onChange={handleChange} value={value} />
               </FormControl>
               <FormMessage></FormMessage>
-              <FormDescription>Tes Form</FormDescription>
             </FormItem>
           )}
         />
+        {packages.map((p) => {
+          const pName = p.name;
+          const pPrice = p.price;
+          return (
+            <section className="flex items-end">
+              <FormField
+                name={p.name}
+                render={({ field }) => (
+                  <FormItem className="pr-4">
+                    <FormLabel>Package Name</FormLabel>
+                    <FormControl>
+                      <Input defaultValue={pName} />
+                    </FormControl>
+                    <FormMessage></FormMessage>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name={p.price}
+                render={({ field }) => (
+                  <FormItem className="pr-4">
+                    <FormLabel>Price</FormLabel>
+                    <FormControl>
+                      <Input defaultValue={pPrice} />
+                    </FormControl>
+                    <FormMessage></FormMessage>
+                  </FormItem>
+                )}
+              />
+              <Dialog>
+                <DialogTrigger>
+                  <Button>
+                    <TrashIcon />
+                  </Button>
+                </DialogTrigger>
+                {DeletePackage()}
+              </Dialog>
+            </section>
+          );
+        })}
         {fields.map((field, index) => {
           return (
             <section className="flex items-end" key={field.id}>
@@ -157,9 +203,7 @@ export default function ProductForm() {
         >
           Add Package
         </Button>
-        <DialogClose asChild>
-          <Button type="submit">Submit</Button>
-        </DialogClose>
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   );

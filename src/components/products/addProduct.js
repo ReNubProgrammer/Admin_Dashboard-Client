@@ -1,3 +1,4 @@
+import { DialogClose } from "@radix-ui/react-dialog";
 import {
   DialogContent,
   DialogDescription,
@@ -5,7 +6,7 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 
-import ProductForm from '../products/product-form-builder'
+import ProductForm from './product-form-builder'
 
 function AddProduct() {
   return (

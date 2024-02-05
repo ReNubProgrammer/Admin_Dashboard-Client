@@ -14,7 +14,7 @@ function Order() {
         <h2 className="text-[20px] font-semibold">Ada yang masuk nih cuy!</h2>
         <Tabs 
           defaultValue="studio"
-          className="flex justify-center mt-4 ml-[-10%]"
+          className="flex flex-col justify-center mt-4 ml-[-10%]"
         >
           <TabsList className="bg-transparent">
             <TabsTrigger

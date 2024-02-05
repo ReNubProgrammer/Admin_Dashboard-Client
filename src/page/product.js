@@ -1,7 +1,6 @@
 import Sidebar from "../components/sidebar";
 import Time from "../components/time";
 import ProductTable from "../components/products/products"
-import { DataTableDemo } from "../components/products/tes";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 
 function Product() {
@@ -10,8 +9,8 @@ function Product() {
       <Sidebar />
       <Time />
       <main className="absolute ml-[18%] mt-10 z-10 font-montserrat w-[82%]">
-        <h1 className="text-[45px] font-extrabold">Pesanan</h1>
-        <h2 className="text-[20px] font-semibold">Ada yang masuk nih cuy!</h2>
+        <h1 className="text-[45px] font-extrabold">Product</h1>
+        <h2 className="text-[20px] font-semibold">List product yang telah didaftarkan</h2>
         <Tabs 
           defaultValue="studio"
           className="flex flex-col justify-center mt-4 ml-[-10%]"

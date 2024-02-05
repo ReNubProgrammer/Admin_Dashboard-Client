@@ -4,13 +4,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import {
-  Dialog,
-  DialogTrigger,
-} from "./ui/dialog";
+import { Dialog, DialogTrigger } from "./ui/dialog";
 import { Link } from "react-router-dom";
 import { useToast } from "./ui/use-toast";
-import AddProduct from "./layer/addProduct";
+import AddProduct from "./products/addProduct";
+import AddTeam from "./team/addTeam";
 
 function Sidebar() {
   const { toast } = useToast();
@@ -74,10 +72,15 @@ function Sidebar() {
               Team
             </AccordionTrigger>
             <AccordionContent className="pl-2 text-[18px]">
-              <button type="button">Add Member</button>
+              <button type="button">
+                <Dialog>
+                  <DialogTrigger>Add Member</DialogTrigger>
+                  {AddTeam()}
+                </Dialog>
+              </button>
             </AccordionContent>
             <AccordionContent className="pl-2 text-[18px]">
-              <Link to={`/freelance`}>
+              <Link to={`/team`}>
                 <button type="button">Member List</button>
               </Link>
             </AccordionContent>
