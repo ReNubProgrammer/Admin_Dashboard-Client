@@ -1,30 +1,29 @@
-import { useToast } from "../ui/use-toast";
-import { useNavigate } from "react-router-dom";
-import httpProduct from "../../lib/apiProduct";
-import Swal from "sweetalert2";
-import { Button } from "../ui/button";
 import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogFooter,
   DialogTitle,
-  DialogClose
+  DialogFooter,
+  DialogClose,
 } from "../ui/dialog";
+import { useToast } from "../ui/use-toast";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import httpProduct from "../../lib/apiProduct";
+import { Button } from "../ui/button";
 
-function DeletePackage({packName, prodId, packId}) {
+function DeleteProduct({ prodName, prodId }) {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const pckgId = JSON.stringify(packId)
   async function OnDelete() {
     await httpProduct
-      .remove(`/drop/${prodId}/${pckgId}`)
+      .remove(`/drop/${prodId}`)
       .then((response) => {
         let timerInterval;
         Swal.fire({
           icon: "success",
-          title: "Package Deleted!",
-          html: "You will be redirect back to product list",
+          title: "Product Deleted!",
+          html: "You will be redirect back product list",
           timer: 1000,
           didOpen: () => {
             Swal.showLoading();
@@ -50,9 +49,12 @@ function DeletePackage({packName, prodId, packId}) {
   return (
     <DialogContent className="font-montserrat">
       <DialogHeader className="w-auto">
-        <DialogTitle className="text-[25px]">Delete {packName}?</DialogTitle>
+        <DialogTitle className="text-[20px]">
+          Are you sure to delete {prodName}?
+        </DialogTitle>
         <DialogDescription className="text-[18px]">
-          Are you sure to delete this package?
+          Once you delete this product with it dependencies you can't retrieve
+          this product.
         </DialogDescription>
       </DialogHeader>
       <DialogFooter className="justify-center">
@@ -69,4 +71,4 @@ function DeletePackage({packName, prodId, packId}) {
   );
 }
 
-export default DeletePackage;
+export default DeleteProduct;

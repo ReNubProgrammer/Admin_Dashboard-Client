@@ -34,3 +34,7 @@ Created by ReNubProgrammer 👨🏻‍💻
 #### 0.2.6
   * Add Feature Table for Team and Order with details
   * Add Member Management (Create, List)
+
+#### 0.3.0
+  * Add Feature Table for Cashflow
+  * Add Transaction Manager now available (Create, Details, Delete)

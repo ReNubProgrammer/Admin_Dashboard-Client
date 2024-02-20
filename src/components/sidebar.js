@@ -9,15 +9,16 @@ import { Link } from "react-router-dom";
 import { useToast } from "./ui/use-toast";
 import AddProduct from "./products/addProduct";
 import AddTeam from "./team/addTeam";
+import AddPayment from "./payment/addPayment";
 
 function Sidebar() {
   const { toast } = useToast();
   return (
-    <div className="fixed w-fit h-[100%] text-white bg-yellowON z-0 font-montserrat">
-      <div className="w-[100%] h-[100px]">
+    <div className="w-fit h-svh text-white bg-yellowON z-0 font-montserrat">
+      {/* <div className="w-[100%] h-[100px]">
         <img className="object-cover h-[100%] mx-[5%] my-2" src="" alt="" />
-      </div>
-      <div className="text-[20px] px-10">
+      </div> */}
+      <div className="text-[20px] px-10 mt-10">
         <Accordion
           className=""
           type="multiple"
@@ -90,15 +91,17 @@ function Sidebar() {
               Cashflow
             </AccordionTrigger>
             <AccordionContent className="pl-2 text-[18px]">
-              <Link to={`/cashflow`}>
-                <button type="button">Add Transaction</button>
+              <button type="button">
+                <Dialog>
+                  <DialogTrigger>Add Transaction</DialogTrigger>
+                  {AddPayment()}
+                </Dialog>
+              </button>
+            </AccordionContent>
+            <AccordionContent className="pl-2 text-[18px]">
+              <Link to={`/mutation`}>
+                <button type="button">Mutation</button>
               </Link>
-            </AccordionContent>
-            <AccordionContent className="pl-2 text-[18px]">
-              <button type="button">Income</button>
-            </AccordionContent>
-            <AccordionContent className="pl-2 text-[18px]">
-              <button type="button">Outcome</button>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem className="border-b-0" value="item-6">

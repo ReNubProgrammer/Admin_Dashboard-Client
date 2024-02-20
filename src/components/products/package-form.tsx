@@ -18,19 +18,15 @@ import { Button } from "../ui/button";
 import httpProduct from "../../lib/apiProduct";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { DialogClose } from "../ui/dialog";
 import { TrashIcon } from "@radix-ui/react-icons";
 
-const packageSchema = z.object({
-  name: z.string(),
-  price: z.string(),
-});
-
 const formSchema = z.object({
-  productName: z
+  name: z
     .string()
     .min(3, { message: "Product Name must be at least 3 characters" })
     .max(20, { message: "Product Name too long" }),
-  packages: z.array(packageSchema),
+  price: z.string(),
 });
 
 export default function ProductForm() {
@@ -38,24 +34,11 @@ export default function ProductForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      productName: "",
-      packages: [
-        {
-          name: "",
-          price: "",
-        },
-      ],
+      name: "",
+      price: "",
     },
   });
-
   const { control } = form;
-  const { fields, append, remove } = useFieldArray({
-    name: "packages",
-    control,
-    rules: {
-      required: "Please append at least 1 item",
-    },
-  });
 
   const navigate = useNavigate();
 
@@ -97,7 +80,7 @@ export default function ProductForm() {
       <form onSubmit={form.handleSubmit(OnSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="productName"
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Product Name</FormLabel>
@@ -105,58 +88,11 @@ export default function ProductForm() {
                 <Input placeholder="Teh Celup Anggrboda" {...field} required />
               </FormControl>
               <FormMessage></FormMessage>
-              <FormDescription>Name of your product</FormDescription>
+              <FormDescription>Tes Form</FormDescription>
             </FormItem>
           )}
         />
-        {fields.map((field, index) => {
-          return (
-            <section className="flex items-end" key={field.id}>
-              <FormField
-                control={form.control}
-                name={`packages.${index}.name`}
-                render={({ field }) => (
-                  <FormItem className="pr-4">
-                    <FormLabel>Package Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} required />
-                    </FormControl>
-                    <FormMessage></FormMessage>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name={`packages.${index}.price`}
-                render={({ field }) => (
-                  <FormItem className="pr-4">
-                    <FormLabel>Price</FormLabel>
-                    <FormControl>
-                      <Input type="number" {...field} required />
-                    </FormControl>
-                    <FormMessage></FormMessage>
-                  </FormItem>
-                )}
-              />
-              <Button type="button" onClick={() => remove(index)}>
-                <TrashIcon />
-              </Button>
-            </section>
-          );
-        })}
-        <Button
-          className="mr-5"
-          type="button"
-          variant="outline"
-          onClick={() => {
-            append({
-              name: "",
-              price: "",
-            });
-          }}
-        >
-          Add Package
-        </Button>
+        
         <Button type="submit">Submit</Button>
       </form>
     </Form>

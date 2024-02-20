@@ -27,7 +27,7 @@ import { Button } from "./button";
 import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
-export function GenerateTable({columns, data}) {
+export function GenerateTable({columns, data, nameFilter}) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
     []
@@ -60,22 +60,22 @@ export function GenerateTable({columns, data}) {
         <Input
           placeholder="Filter list by name..."
           value={
-            (table.getColumn("productName")?.getFilterValue() as string) ?? ""
+            (table.getColumn(`${nameFilter}`)?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table.getColumn("productName")?.setFilterValue(event.target.value)
+            table.getColumn(`${nameFilter}`)?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
       </div>
       <div className="rounded-md border">
         <Table>
-          <TableHeader className="text-[15px] font-extrabold">
+          <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead className="text-[15px] font-bold" key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -93,7 +93,6 @@ export function GenerateTable({columns, data}) {
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

@@ -24,7 +24,7 @@ export default function TeamTable() {
 
   return (
     <div className="container justify-center mt-5 ml-0">
-      <GenerateTable columns={column} data={teams} />
+      <GenerateTable columns={column} data={teams} nameFilter={"name"}/>
     </div>
   );
 }

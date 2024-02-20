@@ -18,7 +18,7 @@ export default function OrderTable() {
   }
   return (
     <div className="container mx-auto py-10">
-      <GenerateTable columns={column} data={orders} />
+      <GenerateTable columns={column} data={orders} nameFilter={"customer_name"}/>
     </div>
   );
 }

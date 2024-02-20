@@ -85,6 +85,7 @@ export default function EditProductForm({ id, packages, prodName }) {
             clearInterval(timerInterval);
           },
         }).then(() => {
+          window.location.reload();
           navigate("/product");
         });
       })
@@ -109,7 +110,7 @@ export default function EditProductForm({ id, packages, prodName }) {
             <FormItem>
               <FormLabel>Product Name</FormLabel>
               <FormControl>
-                <Input onChange={handleChange} value={value} />
+                <Input onChange={handleChange} value={prodName} />
               </FormControl>
               <FormMessage></FormMessage>
             </FormItem>
@@ -119,7 +120,7 @@ export default function EditProductForm({ id, packages, prodName }) {
           const pName = p.name;
           const pPrice = p.price;
           return (
-            <section className="flex items-end">
+            <section className="flex items-end"key={p.id}>
               <FormField
                 name={p.name}
                 render={({ field }) => (
@@ -203,7 +204,7 @@ export default function EditProductForm({ id, packages, prodName }) {
         >
           Add Package
         </Button>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Update</Button>
       </form>
     </Form>
   );

@@ -1,3 +1,4 @@
+import { DialogClose } from "@radix-ui/react-dialog";
 import {
   DialogContent,
   DialogDescription,
@@ -5,22 +6,20 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 
-import ProductForm from './product-form-builder'
+import PaymentForm from './payment-form'
 
-function AddProduct() {
+function AddPayment() {
   return (
       <DialogContent className="font-montserrat max-w-[40%]">
         <DialogHeader className="w-auto">
-          <DialogTitle className="text-[25px]">Add New Product</DialogTitle>
+          <DialogTitle className="text-[25px]">New Transaction</DialogTitle>
           <DialogDescription className="text-[18px]">
-            Want to add new product for your market?
-            <br></br>
-            Fill the credentials and make sure pay attention to the guide.
+            Want to add new transaction?
           </DialogDescription>
         </DialogHeader>
-        <ProductForm/>
+        <PaymentForm/>
       </DialogContent>
   );
 }
 
-export default AddProduct;
+export default AddPayment;
