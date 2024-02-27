@@ -9,7 +9,6 @@ import { Dialog, DialogTrigger } from "../ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { format } from "date-fns";
 import { TableCell } from "../ui/table";
-import DetailsPayment from "./detailsPayment";
 import DeletePayment from "./deletePayment";
 import { DotsHorizontalIcon, TrashIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";

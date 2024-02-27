@@ -8,7 +8,7 @@ import Cashflow from './page/cashflow';
 import NotFound from './page/404';
 import Agenda from './page/agenda';
 
-function App() {
+export default function App() {
   return (
     <Routes>
       <Route path='/' element={<Home/>}></Route>
@@ -21,5 +21,3 @@ function App() {
     </Routes>
   );
 }
-
-export default App;

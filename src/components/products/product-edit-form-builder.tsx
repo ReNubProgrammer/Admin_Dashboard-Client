@@ -8,7 +8,6 @@ import {
   Form,
   FormMessage,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,7 +17,7 @@ import { Button } from "../ui/button";
 import httpProduct from "../../lib/apiProduct";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { Dialog, DialogClose, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogTrigger } from "../ui/dialog";
 import { TrashIcon } from "@radix-ui/react-icons";
 import DeletePackage from "./deletePackage";
 import { useState } from "react";
@@ -70,7 +69,7 @@ export default function EditProductForm({ id, packages, prodName }) {
     console.log(id)
     await httpProduct
       .patch(`/update/${id}`, { data: values })
-      .then((response) => {
+      .then(() => {
         let timerInterval;
         Swal.fire({
           icon: "success",

@@ -7,7 +7,6 @@ import {
   DialogClose,
 } from "../ui/dialog";
 import { useToast } from "../ui/use-toast";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Button } from "../ui/button";
 import httpPayment from "../../lib/apiPayment";
@@ -21,8 +20,8 @@ function DeletePayment({ payName, payId }) {
         let timerInterval;
         Swal.fire({
           icon: "success",
-          title: "Product Deleted!",
-          html: "You will be redirect back product list",
+          title: "Transaction Deleted!",
+          html: "You will be redirect back",
           timer: 1000,
           didOpen: () => {
             Swal.showLoading();
@@ -32,7 +31,6 @@ function DeletePayment({ payName, payId }) {
           },
         }).then(() => {
           window.location.reload();
-          // navigate("/mutation");
         });
       })
       .catch((error) => {
