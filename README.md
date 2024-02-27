@@ -38,3 +38,8 @@ Created by ReNubProgrammer 👨🏻‍💻
 #### 0.3.0
   * Add Feature Table for Cashflow
   * Add Transaction Manager now available (Create, Details, Delete)
+
+#### 0.3.2
+  * Graphic added
+  * Fixing Bug at Payment Table
+  * Try to add loading state when fetching data
