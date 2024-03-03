@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Tabs,
   TabsContent,
@@ -6,7 +5,7 @@ import {
   TabsTrigger,
 } from "../components/ui/tabs";
 import httpPayment from "../lib/apiPayment";
-import GraphicAreaChart from "../components/payment/area-chart";
+import GraphicAreaChart from "../components/payment/payment-area-chart";
 import { formatISO, addDays } from "date-fns";
 import { useEffect, useState } from "react";
 import { GenerateTable } from "../components/ui/data-table";
@@ -19,9 +18,9 @@ import Sidebar from "../components/sidebar";
 import Time from "../components/time";
 
 function Cashflow() {
-  const [date, setDate] = React.useState({
-    from: formatISO(addDays(new Date(), -7)),
-    to: formatISO(new Date()),
+  const [date, setDate] = useState({
+    from: addDays(new Date(), -7),
+    to: new Date(),
   });
 
   const [expenses, setExpenses] = useState([]);
@@ -31,10 +30,19 @@ function Cashflow() {
   const GetDataOnClick = async () => {
     try {
       setLoad(true);
-      const { data } = await httpPayment
-        .get(`/all/income?from=${date.from}&to=${date.to}`)
+      await httpPayment
+        .get(
+          `/all/income?from=${formatISO(date.from)}&to=${formatISO(date.to)}`
+        )
         .then((response) => {
           setIncomes(response.data);
+        });
+      await httpPayment
+        .get(
+          `/all/expense?from=${formatISO(date.from)}&to=${formatISO(date.to)}`
+        )
+        .then((response) => {
+          setExpenses(response.data);
         });
     } catch (error) {
       const msg = error.message;
@@ -48,32 +56,16 @@ function Cashflow() {
     }
   };
 
-  async function GetDataInRange() {
-    await httpPayment
-      .get(`/all/expense?from=${date.from}&to=${date.to}`)
-      .then((response) => {
-        setExpenses(response.data);
-      })
-      .catch((error) => {
-        const msg = error.message;
-        toast({
-          variant: "destructive",
-          title: "Something went wrong",
-          description: `${msg}`,
-        });
-      });
-  }
-
   useEffect(() => {
-    GetDataInRange();
+    GetDataOnClick();
   }, []);
 
   return (
     <>
-      <main className="flex">
-        <Sidebar />
+      <Sidebar />
+      <main className="ml-[250px] flex">
         <Time />
-        <section className="mt-10 font-montserrat w-[80%]">
+        <section className="mt-10 font-montserrat w-[90%]">
           <div className="ml-10">
             <h1 className="text-[45px] font-extrabold">Transaction Mutation</h1>
             <h2 className="text-[20px] font-semibold">
@@ -85,7 +77,7 @@ function Cashflow() {
               </h1>
               <div className="flex mt-2">
                 <DatePickerWithRange date={date} setDate={setDate} />
-                <Button className="ml-3" onClick={GetDataInRange}>
+                <Button className="ml-3" onClick={GetDataOnClick}>
                   <MagnifyingGlassIcon height={20} width={20} />
                 </Button>
               </div>
@@ -116,20 +108,33 @@ function Cashflow() {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="graphic">
-              <GraphicAreaChart
-                allData={expenses}
-                dataKeyX={"date"}
-                dataKeyArea={"amount"}
-              />
+              <div className="ml-[5%] mt-10 text-[14px]">
+                <GraphicAreaChart
+                  allData={expenses}
+                  strokeColor={"#C23A22"}
+                  areaColor={"#FF6663"}
+                />
+              </div>
+              <div className="ml-[5%] mt-10 text-[14px]">
+                <GraphicAreaChart
+                  allData={incomes}
+                  strokeColor={"#4b6d31"}
+                  areaColor={"#a3bd80"}
+                />
+              </div>
+              <div className="h-[200px]"></div>
             </TabsContent>
             <TabsContent value="incomes">
               <div className="container justify-center mt-5 ml-0">
-                <GenerateTable
-                  columns={column}
-                  data={incomes}
-                  nameFilter={"transaction"}
-                  isLoad={isLoad}
-                />
+                {isLoad ? (
+                  <div>Loading...</div>
+                ) : (
+                  <GenerateTable
+                    columns={column}
+                    data={incomes}
+                    nameFilter={"transaction"}
+                  />
+                )}
               </div>
             </TabsContent>
             <TabsContent value="expenses">
@@ -138,7 +143,6 @@ function Cashflow() {
                   columns={column}
                   data={expenses}
                   nameFilter={"transaction"}
-                  isLoad={isLoad}
                 />
               </div>
             </TabsContent>

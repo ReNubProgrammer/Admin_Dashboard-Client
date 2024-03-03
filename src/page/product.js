@@ -5,8 +5,8 @@ import ProductTable from "../components/products/products";
 function Product() {
   return (
     <>
-      <main className="flex">
-        <Sidebar />
+      <Sidebar />
+      <main className="ml-[250px] flex">
         <Time />
         <main className="mt-10 w-[80%] font-montserrat">
           <div className="ml-10">

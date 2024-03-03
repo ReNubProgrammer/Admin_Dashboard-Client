@@ -5,7 +5,7 @@ function Home() {
   return (
     <>
       <Sidebar />
-      <div className="font-montserrat">
+      <div className="font-montserrat flex ml-[250px]">
         <Time />
       </div>
     </>

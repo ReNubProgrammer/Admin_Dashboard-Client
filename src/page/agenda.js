@@ -5,8 +5,10 @@ function Agenda() {
   return (
     <>
       <Sidebar />
-      <Time />
-      <div className="ml-[20%]">Ini Agenda</div>
+      <div className="ml-[250px] flex">
+        <Time />
+        Ini Agenda
+      </div>
     </>
   );
 }

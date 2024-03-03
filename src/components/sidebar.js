@@ -14,10 +14,7 @@ import AddPayment from "./payment/addPayment";
 function Sidebar() {
   const { toast } = useToast();
   return (
-    <div className="w-fit h-svh text-white bg-yellowON z-0 font-montserrat">
-      {/* <div className="w-[100%] h-[100px]">
-        <img className="object-cover h-[100%] mx-[5%] my-2" src="" alt="" />
-      </div> */}
+    <div className="w-[250px] h-screen fixed text-white bg-yellowON z-10 font-montserrat">
       <div className="text-[20px] px-10 mt-10">
         <Accordion
           className=""
@@ -161,9 +158,6 @@ function Sidebar() {
           </AccordionItem>
         </Accordion>
       </div>
-      {/* <button type="button" className="fixed bottom-0 py-2 px-2">
-        <img className="invert" src={setting} alt="" width={25} height={25}/>
-      </button> */}
     </div>
   );
 }

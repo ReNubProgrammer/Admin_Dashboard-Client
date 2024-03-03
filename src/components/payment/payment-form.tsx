@@ -41,7 +41,7 @@ const formSchema = z.object({
     .string()
     .min(3, { message: "Destination of transaction must be clear" })
     .max(15, { message: "Product Name too long" }),
-  date: z.date({ required_error: "Date is required." }),
+  date: z.coerce.date({ required_error: "Date is required." }),
 });
 
 export default function PaymentForm() {
@@ -174,7 +174,7 @@ export default function PaymentForm() {
                       )}
                     >
                       {field.value ? (
-                        format(field.value, "d MMMM yyyy")
+                        format(field.value, "PP")
                       ) : (
                         <span>Pick a date</span>
                       )}

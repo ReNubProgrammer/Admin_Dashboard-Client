@@ -45,7 +45,7 @@ export function DatePickerWithRange({date, setDate}) {
           <Calendar
             initialFocus
             mode="range"
-            min={3}
+            min={2}
             max={7}
             numberOfMonths={2}
             defaultMonth={date?.from}

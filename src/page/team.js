@@ -5,8 +5,8 @@ import TeamTable from "../components/team/teams";
 function Team() {
   return (
     <>
-      <main className="flex">
-        <Sidebar />
+      <Sidebar />
+      <main className="ml-[250px] flex">
         <Time />
         <main className="mt-10 font-montserrat w-[82%]">
           <div className="ml-10">

@@ -11,8 +11,8 @@ import {
 function Order() {
   return (
     <>
-      <main className="flex">
-        <Sidebar />
+      <Sidebar />
+      <main className="ml-[250px] flex">
         <Time />
         <section className="mt-10 font-montserrat w-[82%]">
           <h1 className="text-[45px] font-extrabold">Pesanan</h1>
@@ -27,7 +27,8 @@ function Order() {
                 value="studio"
               >
                 Studio
-              </TabsTrigger>``
+              </TabsTrigger>
+              ``
               <TabsTrigger
                 className="text-[25px] uppercase shadow-none drop-shadow-none font-bold line"
                 value="nonstudio"
