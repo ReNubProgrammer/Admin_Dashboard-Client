@@ -20,7 +20,7 @@ export default function PaymentAggregation({ data }) {
         }
       }
     }
-    console.log("New Data Combined:");
+
     if (countSame > 0) {
       filteredData = object.splice(index, countSame + 1);
       const sum = filteredData.reduce(

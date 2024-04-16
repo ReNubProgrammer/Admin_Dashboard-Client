@@ -49,3 +49,6 @@ Created by ReNubProgrammer 👨🏻‍💻
 - Fixing Bug at Payment Table
 - Fixing bug at Graphic Payment Chart
 - Add aggregation feature for Graphic Payment Chart
+
+#### 0.3.6
+- Add Agenda services
